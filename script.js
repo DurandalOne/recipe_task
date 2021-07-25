@@ -44,6 +44,15 @@ const displaySingleRecipe = (id) => {
     `;
 
   data.ingredients.map((data) => {
+    function extract(item) {
+      let firstChar = item.charAt(0);
+      if (firstChar >= "0" && firstChar <= "9") {
+        let match = item.match(/^(\d+)( |\/|)?(\d+)?( |\/)?(\d{1})?/gim);
+        let fraction = String(match).trim();
+        console.log(math.multiply(math.fraction(fraction), 2).toFraction(true));
+      }
+    }
+    extract(data);
     ingredients += `<p>${data}</p>`;
   });
 
