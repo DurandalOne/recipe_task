@@ -14,6 +14,7 @@ const files = [
 let recipeData = [];
 let categories = [];
 let currentCategory = [];
+let currentID = "";
 const mainContent = document.getElementById("main");
 const heading = document.getElementById("heading");
 const list = document.getElementById("list");
@@ -33,7 +34,7 @@ const fetchData = () => {
   });
 };
 
-const displaySingleRecipe = (id) => {
+const displaySingleRecipe = (id, batches = 1) => {
   mainContent.innerHTML = "";
   let data = recipeData[id];
   let ingredients = ``;
@@ -45,11 +46,15 @@ const displaySingleRecipe = (id) => {
 
   data.ingredients.map((data) => {
     function extract(item) {
+      const regex = /^(\d+)( |\/|)?(\d+)?( |\/)?(\d{1})?/gim;
       let firstChar = item.charAt(0);
       if (firstChar >= "0" && firstChar <= "9") {
-        let match = item.match(/^(\d+)( |\/|)?(\d+)?( |\/)?(\d{1})?/gim);
+        let match = item.match(regex);
         let fraction = String(match).trim();
-        console.log(math.multiply(math.fraction(fraction), 2).toFraction(true));
+        let newValue = math
+          .multiply(math.fraction(fraction), batches)
+          .toFraction(true);
+        data = item.replace(regex, `${newValue} `);
       }
     }
     extract(data);
@@ -64,10 +69,19 @@ const displaySingleRecipe = (id) => {
     ${heading}
     ${ingredients}
     ${directions}
-    <p>Servings: ${data.servings}</p>
+    <p>Servings: ${data.servings * batches}</p>
+    <button id='1' class='button'>x1</button>
+    <button id='2' class='button'>x2</button>
+    <button id='3' class='button'>x3</button>
+    <button id='4' class='button'>x4</button>
     </div>`;
 
   mainContent.insertAdjacentHTML("beforeend", content);
+  document.querySelectorAll(".button").forEach((e) => {
+    e.addEventListener("click", () => {
+      displaySingleRecipe(currentID, e.id);
+    });
+  });
 };
 
 const displayData = (value) => {
@@ -87,6 +101,7 @@ const displayData = (value) => {
     }
     document.querySelectorAll(".recipeTitle").forEach((e) => {
       e.addEventListener("click", () => {
+        currentID = e.id;
         displaySingleRecipe(e.id);
       });
     });
