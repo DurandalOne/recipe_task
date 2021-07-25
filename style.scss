@@ -1,0 +1,57 @@
+body {
+  background: grey;
+  font-family: Arial;
+}
+
+.heading {
+    ul {
+    margin: 0 auto;
+    padding: 0 .5em;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+
+      li {
+        display: inline-block;
+        vertical-align: top;
+        padding: 1em;
+        background: steelblue;
+        border: solid black 1px;
+        cursor: pointer;
+        font-weight: 500;
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.534);
+          color: steelblue;
+      }
+      } 
+
+    }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    cursor: pointer;
+  }
+
+  .recipe{
+  background: whitesmoke;
+  border: solid black 1px;
+  width: 80%;
+  padding: 1em;
+  margin: 1em;
+  }
+
+}
+
+
+
+
+

@@ -1,0 +1,59 @@
+body {
+  background: grey;
+  font-family: Arial;
+}
+
+.heading ul {
+  margin: 0 auto;
+  padding: 0 .5em;
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[6];
+      grid-template-columns: repeat(6, 1fr);
+  -ms-grid-rows: (1fr)[2];
+      grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+}
+
+.heading ul li {
+  display: inline-block;
+  vertical-align: top;
+  padding: 1em;
+  background: steelblue;
+  border: solid black 1px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.heading ul li:hover {
+  background: rgba(0, 0, 0, 0.534);
+  color: steelblue;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container h1 {
+  cursor: pointer;
+}
+
+.container .recipe {
+  background: whitesmoke;
+  border: solid black 1px;
+  width: 80%;
+  padding: 1em;
+  margin: 1em;
+}
+/*# sourceMappingURL=style.css.map */
