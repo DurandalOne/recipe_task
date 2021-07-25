@@ -46,7 +46,10 @@ const displaySingleRecipe = (id, batches = 1) => {
 
   data.ingredients.map((data) => {
     function extract(item) {
+      let newData = "";
       const regex = /^(\d+)( |\/|)?(\d+)?( |\/)?(\d{1})?/gim;
+      const singular =
+        /(\bcup\b)|(\bteaspoon\b)|(\btablespoon\b)|(\begg\b)|(\bclove\b)|(\bpepper\b)|(\bonion\b)|(\bcan\b)|(\bbunch\b)/gim;
       let firstChar = item.charAt(0);
       if (firstChar >= "0" && firstChar <= "9") {
         let match = item.match(regex);
@@ -54,8 +57,22 @@ const displaySingleRecipe = (id, batches = 1) => {
         let newValue = math
           .multiply(math.fraction(fraction), batches)
           .toFraction(true);
-        data = item.replace(regex, `${newValue} `);
+        newData = item.replace(regex, `${newValue} `);
+        if (
+          newData.match(singular) != null &&
+          math.compare(math.fraction(newValue), 1).toFraction(true) == 1
+        ) {
+          let newString = newData.match(singular);
+          let pluralString = "";
+          if (newString.toString() === "bunch") {
+            pluralString = newString.toString() + "es";
+          } else {
+            pluralString = newString.toString() + "s";
+          }
+          newData = newData.replace(singular, pluralString);
+        }
       }
+      data = newData;
     }
     extract(data);
     ingredients += `<p>${data}</p>`;
