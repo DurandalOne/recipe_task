@@ -1,6 +1,30 @@
 body {
-  background: grey;
+  background: #c8d8e4;
   font-family: Arial;
+  margin: 0;
+}
+
+.pageName {
+  background: #2b6777;
+  margin: 0 0 .5em 0;
+  padding: 0;
+  border-bottom: 2px solid black;
+
+  .pageTitle{ 
+
+      display: flex;
+  flex-direction: column;
+  align-items: center;
+
+      h1 {
+      color: #ffffff;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-shadow: 1px 1px black
+    }
+  }
+
+
 }
 
 .heading {
@@ -18,14 +42,15 @@ body {
         display: inline-block;
         vertical-align: top;
         padding: 1em;
-        background: steelblue;
+        background: #52ab98;
         border: solid black 1px;
         cursor: pointer;
-        font-weight: 500;
+        font-weight: 600;
+        border-radius: 10px;
 
         &:hover {
           background: rgba(0, 0, 0, 0.534);
-          color: steelblue;
+          color: #f2f2f2;
       }
       } 
 
@@ -39,6 +64,7 @@ body {
 
   h1 {
     cursor: pointer;
+    text-decoration: underline;
   }
 
   .recipe{
@@ -47,6 +73,34 @@ body {
   width: 80%;
   padding: 1em;
   margin: 1em;
+
+    .ingredients {
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+    .servings {
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+    li {
+      padding: .5em 0
+    }
+
+    button{
+      font-size: 1em;
+      padding: .5em 1.5em;
+      margin: 0 .5em;
+      border-radius: 15px;
+      background-color: #52ab98;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover{
+        background-color: rgb(163, 163, 163);
+      }
+}
   }
 
 }
