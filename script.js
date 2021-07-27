@@ -77,7 +77,7 @@ const displaySingleRecipe = (id, batches = 1) => {
         ) {
           let newString = newData.match(singular);
           let pluralString = "";
-          if (newString.toString() === "bunch") {
+          if (newString[0].toString() === "bunch") {
             pluralString = newString[0].toString() + "es";
           } else {
             pluralString = newString[0].toString() + "s";
